@@ -27,13 +27,17 @@ class FamilyCubit extends Cubit<FamilyState> {
     print("Sending invite for ${emailController.text}");
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
 
       // Save to Firestore
-      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set({
         'email': emailController.text,
         'firstName': firstNameController.text,
         'lastName': lastNameController.text,
@@ -54,45 +58,43 @@ class FamilyCubit extends Cubit<FamilyState> {
     }
   }
 
-  void removeMember(BuildContext context, String userId, String currentUserRole) async {
+  void removeMember(
+      BuildContext context, String userId, String currentUserRole) async {
     if (currentUserRole != 'father') {
       Fluttertoast.showToast(msg: "Only the father can remove members.");
       return;
     }
 
-    bool confirm = await 
-    showDialog(
+    bool confirm = await showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.secColor,
         title: const Text('Confirm Deletion',
-        style:TextStyle(
-          color: Colors.green,
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ) ),
+            style: TextStyle(
+                color: Colors.green,
+                fontSize: 20,
+                fontWeight: FontWeight.bold)),
         content: const Text('Are you sure you want to remove this member?',
-        style:TextStyle(
-          color: Colors.white,
-          fontSize: 15,
-          fontWeight: FontWeight.w500
-        )),
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w500)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel',style:TextStyle(
-          color: Colors.green,
-          fontSize: 15,
-          fontWeight: FontWeight.w300
-        )),
+            child: const Text('Cancel',
+                style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w300)),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Confirm',style:TextStyle(
-          color: Colors.red,
-          fontSize: 15,
-          fontWeight: FontWeight.bold
-        )),
+            child: const Text('Confirm',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -107,11 +109,14 @@ class FamilyCubit extends Cubit<FamilyState> {
       await FirebaseFirestore.instance.collection('users').doc(userId).delete();
 
       // Remove user from other relevant collections
-      await FirebaseFirestore.instance.collection('family_members').doc(userId).delete();
+      await FirebaseFirestore.instance
+          .collection('family_members')
+          .doc(userId)
+          .delete();
       await FirebaseFirestore.instance.collection('roles').doc(userId).delete();
 
       // Remove user from Firebase Authentication
-      User? user = await FirebaseAuth.instance.currentUser;
+      User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         await user.delete();
       }
@@ -124,7 +129,8 @@ class FamilyCubit extends Cubit<FamilyState> {
     }
   }
 
-  void updateMember(BuildContext context, String userId, String firstName, String lastName, String role) {
+  void updateMember(BuildContext context, String userId, String firstName,
+      String lastName, String role) {
     print("Updating member $userId with new values");
     emit(FamilyMemberUpdated(userId, firstName, lastName, role));
   }

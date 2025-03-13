@@ -7,7 +7,7 @@ import '../../../../core/function/custom_troast.dart';
 class AddDeviceDialog extends StatefulWidget {
   final String familyId;
 
-  const AddDeviceDialog({Key? key, required this.familyId}) : super(key: key);
+  const AddDeviceDialog({super.key, required this.familyId});
 
   @override
   _AddDeviceDialogState createState() => _AddDeviceDialogState();
@@ -28,9 +28,8 @@ class _AddDeviceDialogState extends State<AddDeviceDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
-              color: AppColors.secColor,
-
+      decoration: BoxDecoration(
+        color: AppColors.secColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       padding: EdgeInsets.only(
@@ -76,7 +75,8 @@ class _AddDeviceDialogState extends State<AddDeviceDialog> {
                     items: ["Yes", "No"].map((String value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value, style: const TextStyle(color: Colors.green)),
+                        child: Text(value,
+                            style: const TextStyle(color: Colors.green)),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -101,15 +101,19 @@ class _AddDeviceDialogState extends State<AddDeviceDialog> {
                     children: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text("Cancel", style: TextStyle(color: Colors.green)),
+                        child: const Text("Cancel",
+                            style: TextStyle(color: Colors.green)),
                       ),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green),
                         onPressed: () async {
                           String type = _typeController.text.trim();
                           String name = _nameController.text.trim();
 
-                          if (type.isEmpty || name.isEmpty || isDanger == null) {
+                          if (type.isEmpty ||
+                              name.isEmpty ||
+                              isDanger == null) {
                             ShowToast("Please fill all fields");
                             return;
                           }
@@ -123,7 +127,8 @@ class _AddDeviceDialogState extends State<AddDeviceDialog> {
                           Navigator.pop(context);
                           ShowToast("Device added successfully!");
                         },
-                        child: const Text("Save", style: TextStyle(color: Colors.white)),
+                        child: const Text("Save",
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),

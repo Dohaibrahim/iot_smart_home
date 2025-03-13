@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RequestHistoryScreen extends StatefulWidget {
-  const RequestHistoryScreen({Key? key}) : super(key: key);
+  const RequestHistoryScreen({super.key});
 
   @override
   _RequestHistoryScreenState createState() => _RequestHistoryScreenState();
@@ -9,8 +9,18 @@ class RequestHistoryScreen extends StatefulWidget {
 
 class _RequestHistoryScreenState extends State<RequestHistoryScreen> {
   List<Map<String, String>> history = [
-    {'child': 'Child1', 'device': 'Living Room Light', 'timestamp': '10:15 AM', 'status': 'approved'},
-    {'child': 'Child2', 'device': 'AC', 'timestamp': '09:45 AM', 'status': 'rejected'},
+    {
+      'child': 'Child1',
+      'device': 'Living Room Light',
+      'timestamp': '10:15 AM',
+      'status': 'approved'
+    },
+    {
+      'child': 'Child2',
+      'device': 'AC',
+      'timestamp': '09:45 AM',
+      'status': 'rejected'
+    },
   ];
   String filter = '';
 
@@ -30,7 +40,8 @@ class _RequestHistoryScreenState extends State<RequestHistoryScreen> {
         child: Column(
           children: [
             TextField(
-              decoration: const InputDecoration(labelText: 'Filter', border: OutlineInputBorder()),
+              decoration: const InputDecoration(
+                  labelText: 'Filter', border: OutlineInputBorder()),
               onChanged: (value) {
                 setState(() {
                   filter = value;
@@ -48,7 +59,9 @@ class _RequestHistoryScreenState extends State<RequestHistoryScreen> {
                     subtitle: Text('Time: ${entry['timestamp']}'),
                     trailing: Chip(
                       label: Text(entry['status']!),
-                      backgroundColor: entry['status'] == 'approved' ? Colors.green : Colors.red,
+                      backgroundColor: entry['status'] == 'approved'
+                          ? Colors.green
+                          : Colors.red,
                     ),
                   );
                 },

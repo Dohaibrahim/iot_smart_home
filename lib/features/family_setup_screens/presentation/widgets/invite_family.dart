@@ -8,13 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class InviteFamilyMember extends StatelessWidget {
   final String familyId;
 
-  const InviteFamilyMember({Key? key, required this.familyId})
-      : super(key: key);
+  const InviteFamilyMember({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
@@ -30,7 +29,7 @@ class InviteFamilyMember extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<FamilyCubit>();
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 35),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 35),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -38,8 +37,10 @@ class InviteFamilyMember extends StatelessWidget {
                 spacing: 10,
                 children: [
                   Text("Please fill this data ",
-                      style: CustomTextStyles.pacifico400style64
-                          .copyWith(fontSize: 22, color: AppColors.offWhite,fontFamily: 'poppins')),
+                      style: CustomTextStyles.pacifico400style64.copyWith(
+                          fontSize: 22,
+                          color: AppColors.offWhite,
+                          fontFamily: 'poppins')),
                   InviteForm(
                     emailController: cubit.emailController,
                     firstNameController: cubit.firstNameController,

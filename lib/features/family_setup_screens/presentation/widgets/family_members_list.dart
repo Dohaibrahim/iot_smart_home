@@ -8,11 +8,11 @@ class FamilyMembersList extends StatelessWidget {
   final Function(BuildContext, String, String, String, String) onUpdateMember;
 
   const FamilyMembersList({
-    Key? key,
+    super.key,
     required this.familyId,
     required this.onRemoveMember,
     required this.onUpdateMember,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,12 @@ class FamilyMembersList extends StatelessWidget {
         final members = snapshot.data!.docs;
 
         if (members.isEmpty) {
-          return const Center(child: Text('No family members found.', 
-          style: TextStyle(color: Colors.green, fontSize: 20,fontWeight:FontWeight.bold),));
+          return const Center(
+              child: Text(
+            'No family members found.',
+            style: TextStyle(
+                color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+          ));
         }
 
         return Flexible(
@@ -60,11 +64,11 @@ class MemberCard extends StatelessWidget {
   final Function(BuildContext, String, String, String, String) onUpdateMember;
 
   const MemberCard({
-    Key? key,
+    super.key,
     required this.member,
     required this.onRemoveMember,
     required this.onUpdateMember,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +100,7 @@ class MemberCard extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildRoleDropdown(
       String selectedRole, ValueChanged<String?> onChanged) {
     return DropdownButtonFormField<String>(

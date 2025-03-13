@@ -6,7 +6,7 @@ import '../../../core/utils/app_string.dart';
 import '../../../core/utils/app_text_style.dart';
 
 class WelcomeBanner extends StatelessWidget {
-  const WelcomeBanner({Key? key}) : super(key: key);
+  const WelcomeBanner({super.key});
 
   @override
   Widget build(BuildContext context) {

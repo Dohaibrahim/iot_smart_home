@@ -18,8 +18,7 @@ class HomeNavBarWidget extends StatelessWidget {
   final PersistentTabController _controller = PersistentTabController();
   PersistentTabController get controller => _controller;
 
-  HomeNavBarWidget({Key? key, required this.role, required this.familyId})
-      : super(key: key);
+  HomeNavBarWidget({super.key, required this.role, required this.familyId});
 
   @override
   Widget build(BuildContext context) {

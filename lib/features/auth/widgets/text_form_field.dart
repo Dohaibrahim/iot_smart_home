@@ -6,13 +6,13 @@ import '../../../core/utils/app_text_style.dart';
 
 class TextFField extends StatelessWidget {
   const TextFField({
-    Key? key,
+    super.key,
     required this.labelText,
     this.onChanged,
     this.onFieldSubmitted,
     this.suffixIcon,
     this.obscureText,
-  }) : super(key: key);
+  });
   final String labelText;
   final Function(String)? onChanged;
   final Function(String)? onFieldSubmitted;

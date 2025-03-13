@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ChildView extends StatelessWidget {
   final String familyId;
 
-  const ChildView({Key? key, required this.familyId}) : super(key: key);
+  const ChildView({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class ChildView extends StatelessWidget {
         children: [
           FamilyIdCard(familyId: familyId),
           const SizedBox(height: 20),
-          const Text('Contact your father for any changes',
-          style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.green),
+          const Text(
+            'Contact your father for any changes',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
           ),
         ],
       ),

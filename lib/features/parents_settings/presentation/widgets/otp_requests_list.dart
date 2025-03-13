@@ -7,7 +7,7 @@ import '../parent_cubit/parent_cubit.dart';
 class OtpRequestsList extends StatelessWidget {
   final String familyId;
 
-  const OtpRequestsList({Key? key, required this.familyId}) : super(key: key);
+  const OtpRequestsList({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,10 @@ class OtpRequestsList extends StatelessWidget {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Center(child: Text('No pending requests.'
-          ,style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.green),
+          return const Center(
+              child: Text(
+            'No pending requests.',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
           ));
         }
 
@@ -46,54 +47,56 @@ class OtpRequestsList extends StatelessWidget {
                 : 'N/A';
 
             return Card(
-  color: AppColors.secColor, // Updated background color
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12), // Rounded corners
-  ),
-  child: Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: ListTile(
-      title: Text(
-        'Device: $deviceName',
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.green, // Updated title color
-        ),
-      ),
-      // subtitle: Text(
-      //   // 'OTP: $otp\nTime: $formattedTime',
-      //   style: const TextStyle(color: Colors.white), // Updated subtitle color
-      // ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.2), // Soft green background
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.check, color: Colors.green),
-              onPressed: () => parentCubit.approveRequest(requestId),
-            ),
-          ),
-          const SizedBox(width: 8), // Space between buttons
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.red.withOpacity(0.2), // Soft red background
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.red),
-              onPressed: () => parentCubit.rejectRequest(requestId),
-            ),
-          ),
-        ],
-      ),
-    ),
-  ),
-);
-
+              color: AppColors.secColor, // Updated background color
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text(
+                    'Device: $deviceName',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green, // Updated title color
+                    ),
+                  ),
+                  // subtitle: Text(
+                  //   // 'OTP: $otp\nTime: $formattedTime',
+                  //   style: const TextStyle(color: Colors.white), // Updated subtitle color
+                  // ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green
+                              .withOpacity(0.2), // Soft green background
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.check, color: Colors.green),
+                          onPressed: () =>
+                              parentCubit.approveRequest(requestId),
+                        ),
+                      ),
+                      const SizedBox(width: 8), // Space between buttons
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red
+                              .withOpacity(0.2), // Soft red background
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.close, color: Colors.red),
+                          onPressed: () => parentCubit.rejectRequest(requestId),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
           },
         );
       },

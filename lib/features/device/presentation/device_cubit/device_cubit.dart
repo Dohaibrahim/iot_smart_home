@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:IOT_SmartHome/core/function/custom_troast.dart';
-import 'package:IOT_SmartHome/features/device/presentation/views/request_display_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 part 'device_state.dart';
@@ -13,7 +12,8 @@ class DeviceCubit extends Cubit<DeviceState> {
   final String familyId;
   final String role;
 
-  DeviceCubit({required this.familyId, required this.role}) : super(DeviceLoading()) {
+  DeviceCubit({required this.familyId, required this.role})
+      : super(DeviceLoading()) {
     fetchDevices();
   }
 
@@ -43,10 +43,10 @@ class DeviceCubit extends Cubit<DeviceState> {
     return (100000 + random.nextInt(900000)).toString();
   }
 
-  Future<void> requestOTP(BuildContext context, String deviceId, String deviceName) async {
+  Future<void> requestOTP(
+      BuildContext context, String deviceId, String deviceName) async {
     if (role != 'child') {
-      ShowToast('Only children can request OTP.')
-      ;
+      ShowToast('Only children can request OTP.');
       return;
     }
     var existing = await _firestore
@@ -56,12 +56,13 @@ class DeviceCubit extends Cubit<DeviceState> {
         .where('status', isEqualTo: 'pending')
         .get();
     if (existing.docs.isNotEmpty) {
-            ShowToast('Request already pending for this device.');
+      ShowToast('Request already pending for this device.');
       return;
     }
     String otp = _generateOTP();
     try {
-      DocumentReference docRef = await _firestore.collection('otp_requests').add({
+      DocumentReference docRef =
+          await _firestore.collection('otp_requests').add({
         'otp': otp,
         'childId': familyId,
         'deviceId': deviceId,
@@ -83,7 +84,8 @@ class DeviceCubit extends Cubit<DeviceState> {
     }
   }
 
-  Future<void> updateDeviceStatus(BuildContext context, String deviceId, bool newStatus) async {
+  Future<void> updateDeviceStatus(
+      BuildContext context, String deviceId, bool newStatus) async {
     try {
       await _firestore.collection('devices').doc(deviceId).update({
         'status': newStatus,
@@ -92,7 +94,6 @@ class DeviceCubit extends Cubit<DeviceState> {
       fetchDevices();
       if (context.mounted) {
         ShowToast(' Device Updated!');
-        
       }
     } catch (e) {
       if (context.mounted) {

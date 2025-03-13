@@ -50,11 +50,6 @@ class AuthCubit extends Cubit<AuthState> {
     return result.docs.isEmpty;
   }
 
-  @override
-  Future<void> close() {
-    return super.close();
-  }
-
   void _emitState(AuthState state) {
     if (!isClosed) emit(state);
   }

@@ -19,14 +19,14 @@ class OTPDisplayScreen extends StatefulWidget {
   final String otpRequestId;
 
   const OTPDisplayScreen({
-    Key? key,
+    super.key,
     required this.otpCode,
     required this.role,
     required this.familyId,
     required this.deviceId,
     required this.deviceName,
     required this.otpRequestId,
-  }) : super(key: key);
+  });
 
   @override
   _OTPDisplayScreenState createState() => _OTPDisplayScreenState();
@@ -71,13 +71,11 @@ class _OTPDisplayScreenState extends State<OTPDisplayScreen> {
               .read<DeviceCubit>()
               .updateDeviceStatus(context, widget.deviceId, true);
           if (mounted) {
-            ShowToast( 'Request approved!');
-           
+            ShowToast('Request approved!');
           }
         } else if (data['status'] == 'rejected') {
           if (mounted) {
             ShowToast('Request rejected!');
-           
           }
         }
         if (data['status'] != 'completed') {
@@ -89,7 +87,7 @@ class _OTPDisplayScreenState extends State<OTPDisplayScreen> {
         if (widget.role == 'child') {
           context.read<DeviceCubit>().fetchDevices();
         }
-        
+
         GoRouter.of(context).go('/homeNavBar',
             extra: {'role': widget.role, 'familyId': widget.familyId});
       }
@@ -146,7 +144,7 @@ class _OTPDisplayScreenState extends State<OTPDisplayScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Text(
+              Text(
                 "The Time Remaining",
                 style: TextStyle(
                     fontSize: 25,

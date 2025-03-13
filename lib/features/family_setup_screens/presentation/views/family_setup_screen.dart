@@ -14,8 +14,7 @@ class FamilySetupScreen extends StatelessWidget {
   final String familyId;
 
   const FamilySetupScreen(
-      {Key? key, required this.role, required this.familyId})
-      : super(key: key);
+      {super.key, required this.role, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class FamilySetupScreen extends StatelessWidget {
               if (homeNavBar != null) {
                 homeNavBar.controller.jumpToTab(0);
               } else {
-                Navigator.pop(context); 
+                Navigator.pop(context);
               }
             },
           ),
@@ -69,8 +68,7 @@ class RoleBasedView extends StatelessWidget {
   final String role;
   final String familyId;
 
-  const RoleBasedView({Key? key, required this.role, required this.familyId})
-      : super(key: key);
+  const RoleBasedView({super.key, required this.role, required this.familyId});
 
   @override
   Widget build(BuildContext context) {

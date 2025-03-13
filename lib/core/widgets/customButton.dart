@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomBotton extends StatelessWidget {
   const CustomBotton(
-      {Key? key, this.color, required this.text, required this.onPressed})
-      : super(key: key);
+      {super.key, this.color, required this.text, required this.onPressed});
   final Color? color;
   final String text;
   final VoidCallback onPressed;

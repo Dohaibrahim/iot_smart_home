@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../parent_cubit/parent_cubit.dart';
 
 class OTPApprovalScreen extends StatefulWidget {
-  const OTPApprovalScreen({Key? key}) : super(key: key);
+  const OTPApprovalScreen({super.key});
 
   @override
   _OTPApprovalScreenState createState() => _OTPApprovalScreenState();
@@ -40,8 +40,11 @@ class _OTPApprovalScreenState extends State<OTPApprovalScreen> {
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     onPressed: () {
-                      context.read<ParentCubit>().approveRequest(requestController.text);
-                      ShowToast("The Request Approved: ${requestController.text}");
+                      context
+                          .read<ParentCubit>()
+                          .approveRequest(requestController.text);
+                      ShowToast(
+                          "The Request Approved: ${requestController.text}");
                       print("The Request Approved: ${requestController.text}");
                     },
                     child: const Text('Approve'),
@@ -53,7 +56,9 @@ class _OTPApprovalScreenState extends State<OTPApprovalScreen> {
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     onPressed: () {
-                      context.read<ParentCubit>().rejectRequest(requestController.text);
+                      context
+                          .read<ParentCubit>()
+                          .rejectRequest(requestController.text);
                       ShowToast(
                           "The Request  Rejected: ${requestController.text}");
                       print("The Request  Rejected: ${requestController.text}");

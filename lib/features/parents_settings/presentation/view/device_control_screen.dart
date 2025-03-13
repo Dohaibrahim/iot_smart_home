@@ -11,10 +11,10 @@ class DeviceControlScreen extends StatelessWidget {
   final String familyId;
 
   const DeviceControlScreen({
-    Key? key,
+    super.key,
     required this.role,
     required this.familyId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +34,16 @@ class DeviceControlScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomBotton(
-  text: "Add New Device!",
-  onPressed: () => showModalBottomSheet(
-    context: context,
-     isScrollControlled: true,
-   
-    builder: (dialogContext) => BlocProvider.value(
-      value: BlocProvider.of<ParentCubit>(context), 
-      child: AddDeviceDialog(familyId: familyId),
-    ),
-  ),
-),
-
+              text: "Add New Device!",
+              onPressed: () => showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (dialogContext) => BlocProvider.value(
+                  value: BlocProvider.of<ParentCubit>(context),
+                  child: AddDeviceDialog(familyId: familyId),
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
             Expanded(child: DeviceList(familyId: familyId)),
           ],

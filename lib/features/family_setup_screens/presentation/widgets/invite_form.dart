@@ -13,7 +13,7 @@ class InviteForm extends StatelessWidget {
   final VoidCallback onSendInvite;
 
   InviteForm({
-    Key? key,
+    super.key,
     required this.emailController,
     required this.firstNameController,
     required this.lastNameController,
@@ -21,7 +21,7 @@ class InviteForm extends StatelessWidget {
     required this.selectedRole,
     required this.onRoleChanged,
     required this.onSendInvite,
-  }) : super(key: key);
+  });
   GlobalKey<FormState> sendInviteFormKey = GlobalKey();
 
   @override

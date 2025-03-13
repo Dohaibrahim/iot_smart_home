@@ -1,7 +1,5 @@
 import 'package:IOT_SmartHome/core/database/cache/cache_helper.dart';
 import 'package:IOT_SmartHome/core/serveces/service_locator.dart';
-import 'package:IOT_SmartHome/core/utils/app_colors.dart';
-import 'package:IOT_SmartHome/firebase_options.dart';
 import 'package:IOT_SmartHome/routers.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';

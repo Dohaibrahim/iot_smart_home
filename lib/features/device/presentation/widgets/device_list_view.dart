@@ -4,7 +4,7 @@ import 'device_card.dart';
 class DeviceListView extends StatelessWidget {
   final List<Map<String, dynamic>> devices;
 
-  const DeviceListView({Key? key, required this.devices}) : super(key: key);
+  const DeviceListView({super.key, required this.devices});
 
   @override
   Widget build(BuildContext context) {

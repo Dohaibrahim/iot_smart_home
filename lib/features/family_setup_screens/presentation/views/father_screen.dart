@@ -10,9 +10,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FatherView extends StatelessWidget {
   final String familyId;
-  final String currentUserRole = 'father'; // Assuming the current user is the father
+  final String currentUserRole =
+      'father'; // Assuming the current user is the father
 
-  const FatherView({Key? key, required this.familyId}) : super(key: key);
+  const FatherView({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {

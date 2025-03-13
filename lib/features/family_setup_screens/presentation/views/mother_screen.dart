@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class MotherView extends StatelessWidget {
   final String familyId;
 
-  const MotherView({Key? key, required this.familyId}) : super(key: key);
+  const MotherView({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {

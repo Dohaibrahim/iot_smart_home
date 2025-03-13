@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 class FamilyIdCard extends StatelessWidget {
   final String familyId;
 
-  const FamilyIdCard({Key? key, required this.familyId}) : super(key: key);
+  const FamilyIdCard({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,11 @@ class FamilyIdCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.copy,color: Colors.white,size:25 ,),
+              icon: const Icon(
+                Icons.copy,
+                color: Colors.white,
+                size: 25,
+              ),
               onPressed: () => copyToClipboard(context),
             ),
           ],
@@ -52,5 +56,5 @@ class FamilyIdCard extends StatelessWidget {
   void copyToClipboard(BuildContext context) {
     Clipboard.setData(ClipboardData(text: familyId));
     ShowToast('Family ID copied');
-    }
+  }
 }

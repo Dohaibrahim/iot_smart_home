@@ -6,7 +6,7 @@ import '../views/request_display_screen.dart';
 class DeviceCard extends StatelessWidget {
   final Map<String, dynamic> device;
 
-  const DeviceCard({Key? key, required this.device}) : super(key: key);
+  const DeviceCard({super.key, required this.device});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class DeviceCard extends StatelessWidget {
         child: ListTile(
           title: Text(
             device['name'],
-            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.green),
           ),
           subtitle: Text(
             'Status: ${device['status'] ? 'On' : 'Off'}\n'
@@ -43,7 +44,8 @@ class DeviceCard extends StatelessWidget {
                   value: device['status'],
                   activeColor: Colors.green,
                   inactiveTrackColor: Colors.grey,
-                  onChanged: (val) => cubit.updateDeviceStatus(context, device['id'], val),
+                  onChanged: (val) =>
+                      cubit.updateDeviceStatus(context, device['id'], val),
                 ),
             ],
           ),
@@ -54,9 +56,13 @@ class DeviceCard extends StatelessWidget {
 
   void _handleDeviceAction(BuildContext context, Map<String, dynamic> device) {
     if (!device['status']) {
-      context.read<DeviceCubit>().requestOTP(context, device['id'], device['name']);
+      context
+          .read<DeviceCubit>()
+          .requestOTP(context, device['id'], device['name']);
     } else {
-      context.read<DeviceCubit>().updateDeviceStatus(context, device['id'], false);
+      context
+          .read<DeviceCubit>()
+          .updateDeviceStatus(context, device['id'], false);
     }
   }
 }

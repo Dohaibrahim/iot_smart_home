@@ -7,7 +7,7 @@ import '../../../../core/function/custom_troast.dart';
 class DeviceList extends StatelessWidget {
   final String familyId;
 
-  const DeviceList({Key? key, required this.familyId}) : super(key: key);
+  const DeviceList({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +25,12 @@ class DeviceList extends StatelessWidget {
         }
 
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No devices found',style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-             ));
+          return const Center(
+              child: Text(
+            'No devices found',
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+          ));
         }
 
         final devices = snapshot.data!;
@@ -63,11 +64,13 @@ class DeviceList extends StatelessWidget {
                       inactiveTrackColor: Colors.grey,
                       onChanged: (value) {
                         parentCubit.toggleDeviceStatus(device['id'], value);
-                        ShowToast('${device['name']} turned ${value ? 'On' : 'Off'}');
+                        ShowToast(
+                            '${device['name']} turned ${value ? 'On' : 'Off'}');
                       },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red, size: 25),
+                      icon:
+                          const Icon(Icons.delete, color: Colors.red, size: 25),
                       onPressed: () {
                         parentCubit.deleteDevice(device['id']);
                         ShowToast('${device['name']} deleted');

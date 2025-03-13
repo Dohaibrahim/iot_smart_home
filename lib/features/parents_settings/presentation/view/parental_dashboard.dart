@@ -10,7 +10,7 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 class ParentalDashboard extends StatelessWidget {
   final String familyId;
 
-  const ParentalDashboard({Key? key, required this.familyId}) : super(key: key);
+  const ParentalDashboard({super.key, required this.familyId});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,6 @@ class ParentalDashboard extends StatelessWidget {
               ParentalStats(familyId: familyId),
               const SizedBox(height: 20),
               Expanded(child: OtpRequestsList(familyId: familyId)),
-              
             ],
           ),
         ),
